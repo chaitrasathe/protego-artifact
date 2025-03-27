@@ -22,8 +22,8 @@ NUM_CONNS = 100
 ST_AVG = 10
 
 # make sure these match in bw_config.h
-BW_TARGET = 80
-BW_THRESHOLD = 160
+BW_TARGET = 45
+BW_THRESHOLD = 90
 
 print("modifying bw_config.h values for target and threshold")
 cmd = "sed -i \'s/#define SBW_DELAY_TARGET.*/#define SBW_DELAY_TARGET\\t\\t\\t{:d}/g\'"\
@@ -44,7 +44,7 @@ BREAKWATER_TIMESERIES = True
 #    exp: exponential
 #    const: constant
 #    bimod: bimodal
-ST_DIST = "exp"
+ST_DIST = "const"
 
 # SLO = 10 * (average RPC processing time + network RTT)
 NET_RTT = 10

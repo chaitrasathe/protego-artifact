@@ -3,8 +3,8 @@ import os
 import paramiko
 from util import *
 from config_remote import *
-
-k = paramiko.RSAKey.from_private_key_file(KEY_LOCATION)
+print(KEY_LOCATION)
+k = paramiko.Ed25519Key.from_private_key_file(KEY_LOCATION)
 
 # config check
 if len(NODES) < 1:
@@ -98,6 +98,6 @@ print("Setting up memcahced...")
 cmd = "cd ~/{}/memcached && ./version.sh && autoreconf -i"\
         " && ./configure --with-shenango=../{} && make clean && make"\
         .format(ARTIFACT_PATH, KERNEL_NAME)
-execute_remote(conns, cmd, True)
+execute_remote([server_conn], cmd, True)
 
 print("Done.")
